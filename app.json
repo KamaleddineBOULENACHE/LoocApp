@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "loocAppTest",
-    "slug": "loocAppTest",
+    "name": "Looc2",
+    "slug": "Looc2",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,10 +18,32 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.kamaleddine.loocApp2",
+      "permissions": [
+        "INTERNET",
+        "ACCESS_WIFI_STATE",
+        "ACCESS_NETWORK_STATE"
+      ],
+      "usesCleartextTraffic": true
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "2ebb6b29-59cd-4d31-af05-9190e07f8f64"
+      }
     }
   }
 }
