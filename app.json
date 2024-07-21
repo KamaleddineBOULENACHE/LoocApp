@@ -9,7 +9,11 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor":  "transparent"
+    },
+    "statusBar": {
+      "backgroundColor": "transparent",
+      "style": "light"
     },
     "ios": {
       "supportsTablet": true

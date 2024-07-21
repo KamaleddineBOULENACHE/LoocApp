@@ -13,7 +13,7 @@ const WebSocketProvider = ({children}) => {
   const reconnectInterval = 1000; // 1 second
 
   useEffect(() => {
-    connectWebSocket();
+    // connectWebSocket();
 
     return () => {
       if (ws.current) {

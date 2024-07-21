@@ -30,71 +30,72 @@ const Stack = createNativeStackNavigator();
 
 
   return (
-    <WebSocketProvider>
-      
-      <NavigationContainer>
-      <Stack.Navigator initialRouteName='Intro' >
-      <Stack.Screen name="Intro" component={IntroScreen}  options={{ headerShown: false }} />
-        <Stack.Screen name="Tabs" component={Tabs}  options={{ headerShown: false }} />
-        <Stack.Screen 
-            name="Enrolling" 
-            component={Enrolling} 
-            options={{ 
-              headerShown: true, 
-              headerTitle:'',
-              headerStyle: {
-                backgroundColor: '#121418',
 
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
-                fontFamily: 'SpaceGrotesk_600SemiBold',
-              },
-              
-              
-            }} 
-          />
+      <WebSocketProvider>
+        
+        <NavigationContainer>
+        <Stack.Navigator initialRouteName='Intro' >
+        <Stack.Screen name="Intro" component={IntroScreen}  options={{ headerShown: false }} />
+          <Stack.Screen name="Tabs" component={Tabs}  options={{ headerShown: false }} />
           <Stack.Screen 
-            name="Pairing" 
-            component={PairingScreen} 
-            options={{ 
-              headerShown: true, 
-              headerTitle:'',
-              headerStyle: {
-                backgroundColor: '#121418',
+              name="Enrolling" 
+              component={Enrolling} 
+              options={{ 
+                headerShown: true, 
+                headerTitle:'',
+                headerStyle: {
+                  backgroundColor: '#121418',
 
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
-                fontFamily: 'SpaceGrotesk_600SemiBold',
-              },
-              
-              
-            }} 
-          />
-
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontFamily: 'SpaceGrotesk_600SemiBold',
+                },
+                
+                
+              }} 
+            />
             <Stack.Screen 
-            name="Credentials" 
-            component={CredentialsScreen} 
-            options={{ 
-              headerShown: true, 
-              headerTitle:'',
-              headerStyle: {
-                backgroundColor: '#121418',
+              name="Pairing" 
+              component={PairingScreen} 
+              options={{ 
+                headerShown: true, 
+                headerTitle:'',
+                headerStyle: {
+                  backgroundColor: '#121418',
 
-              },
-              headerTintColor: '#fff',
-              headerTitleStyle: {
-                fontFamily: 'SpaceGrotesk_600SemiBold',
-              },
-              
-              
-            }} 
-          />
-      </Stack.Navigator>
-    </NavigationContainer>
-      
-    </WebSocketProvider>
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontFamily: 'SpaceGrotesk_600SemiBold',
+                },
+                
+                
+              }} 
+            />
+
+              <Stack.Screen 
+              name="Credentials" 
+              component={CredentialsScreen} 
+              options={{ 
+                headerShown: true, 
+                headerTitle:'',
+                headerStyle: {
+                  backgroundColor: '#121418',
+
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontFamily: 'SpaceGrotesk_600SemiBold',
+                },
+                
+                
+              }} 
+            />
+        </Stack.Navigator>
+      </NavigationContainer>
+        
+      </WebSocketProvider>
  
       
     

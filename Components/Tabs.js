@@ -1,19 +1,19 @@
 import React from 'react';
-import { View, StyleSheet,Text,TouchableOpacity } from 'react-native';
+import { View, StyleSheet,Text,TouchableOpacity,SafeAreaView } from 'react-native';
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../Screens/HomeScreen/HomeScreen'
 import UserScreen from '../Screens/UserScreen/UserScreen';
-import SettingsScreen from '../Screens/SettingsScreen/SettingsScreen';
 import {widthPercentageToDP as wp,heightPercentageToDP as hp }from 'react-native-responsive-screen'
 import { Entypo, FontAwesome, MaterialIcons, Ionicons } from '@expo/vector-icons';
-
+import SettingsTabsNavigator from '../Screens/SettingsScreens/SettingsTabsNavigator';
 const Tab = createBottomTabNavigator();
 
 const Tabs= ({navigation}) => {
   
 
   return (
-    <View style={styles.container}>
+    
+    <SafeAreaView style={styles.container}>
       <Tab.Navigator 
         screenOptions={{
           
@@ -81,21 +81,21 @@ const Tabs= ({navigation}) => {
               <Ionicons name="arrow-back" size={hp(2)} color="#fff" />
             </TouchableOpacity>
           ),
-          
-
+         
         }}/>
-        <Tab.Screen name="Settings" component={SettingsScreen} options={{
+        <Tab.Screen name="Settings" component={SettingsTabsNavigator} options={{
           tabBarIcon:({focused})=>(
             <View style={{display:'flex',alignItems:'center'}}>
                   <MaterialIcons name="settings" size={hp(3.5)} color={focused? 'white':'grey'} />
                   <Text style={[styles.swipeGuideTextT,{color:focused? 'white':'grey',textAlign:'center'}]}>Settings</Text>
             </View>
 
-          )
+          ),
+        
         }} />
       </Tab.Navigator>
       
-    </View>
+    </SafeAreaView>
   );
 };
 

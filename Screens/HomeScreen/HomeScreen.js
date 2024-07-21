@@ -1,5 +1,5 @@
 import React, { useState,useContext,useEffect } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Image,SafeAreaView, TouchableOpacity, Dimensions } from 'react-native';
 import menu from './assets/Menu.png';
 import FingerConnected from './assets/FingerConnected.png';
 import FingerDisConnected from './assets/FingerDisConnected.png';
@@ -86,7 +86,7 @@ const HomeScreen = ({ navigation }) => {
 
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
 
       <View style={styles.Topcontainer}>
         <Text style={styles.TopText1}>Good Morning!</Text>
@@ -143,7 +143,7 @@ const HomeScreen = ({ navigation }) => {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.ActionContainer}>
+        <TouchableOpacity style={styles.ActionContainer} onPress={()=>{navigation.navigate('Settings')}}>
           <Image source={settingsIcon} />
           <View style={styles.enrollContainer}>
             <Text style={styles.ActionsText}>Settings</Text>
@@ -153,7 +153,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
       </View>
 
-    </View>
+    </SafeAreaView>
   );
 };
 

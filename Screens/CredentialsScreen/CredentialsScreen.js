@@ -31,7 +31,8 @@ const CredentialsScreen= ({navigation}) => {
       console.error('Error logging in:', error);
     }
   };
-
+  const [Input1Focus,setInput1Focus]=useState(false)
+  const [Input2Focus,setInput2Focus]=useState(false)
   return (
     <View style={styles.container}>
     <View>
@@ -41,25 +42,31 @@ const CredentialsScreen= ({navigation}) => {
       </View>
       <View style={styles.FormContainer}>
         <Text style={styles.inputTitle}>Device</Text>
-        <View style={styles.FormInputCon}>
+        <View style={[styles.FormInputCon,{backgroundColor:Input1Focus?'#2E3233':'#121418'}]}>
           <TextInput
             style={styles.FormInput}
             value={username}
             onChangeText={setUsername}
+            onFocus={() => setInput1Focus(true)}
+            onBlur={() => setInput1Focus(false)}
           />
         </View>
         <Text style={styles.inputTitle}>Password</Text>
-        <View style={styles.FormInputCon}>
+        <View style={[styles.FormInputCon,{backgroundColor:Input2Focus?'#2E3233':'#121418'}]}>
           <TextInput
             style={styles.FormInput}
             secureTextEntry={!showPassword}
             value={password}
             onChangeText={setPassword}
+            onFocus={() => setInput2Focus(true)}
+            onBlur={() => setInput2Focus(false)}
+
           />
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-            <AntDesign name={showPassword ? "eyeo" : "eye"} size={32} color="#2E3233" />
+            <AntDesign name={showPassword ? "eyeo" : "eye"} size={32} color={Input2Focus?'white':'#2E3233'} />
           </TouchableOpacity>
         </View>
+        <Text style={{ fontSize: hp(1.5), color: 'white', fontFamily: 'SpaceGrotesk_300Light',textAlign:'left',alignSelf:'flex-start' }}>Default Credential are written in the back of the package</Text>
         <TouchableOpacity style={styles.FormSubmitBtn} onPress={handleLogin}>
           <Text style={styles.FormSubmitBtnText}>Continue</Text>
         </TouchableOpacity>
@@ -105,6 +112,7 @@ const styles = StyleSheet.create({
   FormInput:{
     color:'white',
     fontSize:24,
+    width:'90%'
     
 
   },
@@ -133,8 +141,8 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     borderRadius:30,
     width:'100%',
-    height:65,
-    marginTop:25
+    height:hp(6),
+    marginTop:hp(4)
   },
   FormSubmitBtnText:{
     fontSize:20,
