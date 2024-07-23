@@ -8,8 +8,8 @@ import { WebSocketContext } from '../../../Controllers/WebSocketContextt';
 
 import {widthPercentageToDP as wp,heightPercentageToDP as hp }from 'react-native-responsive-screen'
 
-const Enrolling = () => {
-    const [currentStep, setCurrentStep] = useState(0);
+const Enrolling = ({navigation}) => {
+    const [currentStep, setCurrentStep] = useState(2);
     const { connectionStatus, message, sendMessage ,setMessage } = useContext(WebSocketContext);
  
   
@@ -27,11 +27,18 @@ const Enrolling = () => {
         setCurrentStep(currentStep - 1);
       }
     };
+    
+    const Step = (step) => {
+      if (currentStep > 0) {
+        setCurrentStep(step);
+      }
+    };
+    
 
     const steps = [
       <Step1 key="step1" progressFunction={nextStep} />,
       <Step2 key="step2" progressFunction={nextStep} />,
-      <Step3 key="step3" />,
+      <Step3 key="step3" progressFunction={Step} />,
     ];
     
  

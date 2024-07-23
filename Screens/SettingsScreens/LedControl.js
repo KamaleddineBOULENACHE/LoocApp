@@ -14,29 +14,7 @@ const PairingPassword= () => {
       <View style={styles.TopLabel}>
         <Text style={styles.TopText}>Settings</Text>
       </View>
-    <View style={styles.SettingsContainer}>
-      <View style={styles.SettingCategoryContainer}>
-        <Text style={styles.SettingLabel}>APPEARENCE</Text>
-        <View style={styles.Setting}>
-         <MaterialCommunityIcons name="lightbulb-on-outline" size={hp(5)} color="white" />          
-          <Text style={styles.SettingTitle}>Led Control</Text>
-          <Entypo style={{marginStart:'auto'}}name="chevron-right" size={24} color="white" />
-        </View>
-      </View>
-      <View style={styles.SettingCategoryContainer}>
-        <Text style={styles.SettingLabel}>SECURITY</Text>
-        <View style={styles.Setting}>
-         <MaterialCommunityIcons name="lock-outline" style={{marginHorizontal:wp(2)}} size={hp(3.4)} color="white" /> 
-          <Text style={styles.SettingTitle}>Pairing Password</Text>
-          <Entypo style={{marginStart:'auto'}}name="chevron-right" size={24} color="white" />
-        </View>
-        <View style={styles.Setting}>
-          < MaterialCommunityIcons name="lock-outline" style={{marginHorizontal:wp(2)}} size={hp(3.4)} color="white" />  
-          <Text style={styles.SettingTitle}>Wifi Password</Text>
-          <Entypo style={{marginStart:'auto'}}name="chevron-right" size={24} color="white" />
-        </View>
-      </View>
-    </View>
+    
         
     </View>
   );

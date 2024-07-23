@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, StyleSheet,Text,TouchableOpacity,SafeAreaView } from 'react-native';
+import React,{useContext,useState,useEffect} from 'react';
+import { View, StyleSheet,Text,TouchableOpacity,SafeAreaView, Keyboard  } from 'react-native';
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from '../Screens/HomeScreen/HomeScreen'
 import UserScreen from '../Screens/UserScreen/UserScreen';
@@ -7,9 +7,27 @@ import {widthPercentageToDP as wp,heightPercentageToDP as hp }from 'react-native
 import { Entypo, FontAwesome, MaterialIcons, Ionicons } from '@expo/vector-icons';
 import SettingsTabsNavigator from '../Screens/SettingsScreens/SettingsTabsNavigator';
 const Tab = createBottomTabNavigator();
+import { WebSocketContext } from '../Controllers/WebSocketContextt';
 
 const Tabs= ({navigation}) => {
   
+  const { connectionStatus, message, sendMessage } = useContext(WebSocketContext);
+
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+      setKeyboardVisible(true);
+    });
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+      setKeyboardVisible(false);
+    });
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
 
   return (
     
@@ -21,7 +39,7 @@ const Tabs= ({navigation}) => {
           tabBarShowLabel:false,
           tabBarStyle:{
             position:'absolute',
-            bottom:hp(4),
+            bottom:isKeyboardVisible ? -100 : hp(4),
             width:wp(90),
             left:wp(5),
             borderRadius:20,
@@ -31,9 +49,10 @@ const Tabs= ({navigation}) => {
             borderTopWidth: 0, // Remove the border
             borderTopColor: 'transparent', // Ensure no color is applied
             shadowOpacity: 0, // Remove shadow if any
-            paddingTop:hp(0.5)
+            paddingTop:hp(0.5),
+            animation: 'slide_from_right'
             
-          }
+          },
          
           
         }}>
@@ -60,6 +79,9 @@ const Tabs= ({navigation}) => {
                 <Text style={[styles.swipeGuideTextT,{color:focused? 'white':'grey',textAlign:'center'}]}>Users</Text>
               </View>
           ),
+          // tabBarButton: (props) => (
+          //   <TouchableOpacity {...props} disabled={!connectionStatus} />
+          // ),
           headerShown: true, 
           
           headerStyle: {
@@ -91,6 +113,9 @@ const Tabs= ({navigation}) => {
             </View>
 
           ),
+          // tabBarButton: (props) => (
+          //   <TouchableOpacity {...props} disabled={!connectionStatus} />
+          // ),
         
         }} />
       </Tab.Navigator>

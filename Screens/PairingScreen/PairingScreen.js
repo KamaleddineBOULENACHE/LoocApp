@@ -32,9 +32,13 @@ const PairingScreen= ({ navigation }) => {
             <Entypo name="dot-single" size={24} color="white" />
             <Text style={styles.BottomText}>Pairing mode will make the device's network visible for connction </Text>
             </View>
-            <View style={{display:'flex',flexDirection:'row'}}>
+            <View style={{display:'flex',flexDirection:'row',marginBottom:hp(2)}}>
             <Entypo name="dot-single" size={24} color="white" />
             <Text style={styles.BottomText}>connect to looc ssid to continue </Text>
+            </View>
+            <View style={{display:'flex',flexDirection:'row'}}>
+            <Entypo name="dot-single" size={24} color="white" />
+            <Text style={styles.BottomText}>Note that the connection will remain open for 10 min  </Text>
             </View>
           </View>
           

@@ -8,8 +8,11 @@ const Step1 = (props) => {
   const [ownerName, setOwnerName] = useState('');
 
   const EnrollName = () => {
-    props.progressFunction();
+    
     sendMessage(`ENROLL${ownerName}`);
+    if(message && connectionStatus){
+      props.progressFunction();
+    }
   };
 
   return (

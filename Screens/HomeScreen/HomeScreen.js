@@ -7,7 +7,7 @@ import enroll from './assets/enroll.png';
 import usersIcon from './assets/users.png';
 import settingsIcon from './assets/settings.png';
 import chev2 from './assets/chev2.png';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo ,FontAwesome6} from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import 'react-native-gesture-handler';
 import {widthPercentageToDP as wp,heightPercentageToDP as hp }from 'react-native-responsive-screen'
@@ -65,7 +65,9 @@ const HomeScreen = ({ navigation }) => {
     if(connectionStatus){
       return(
         <View style={styles.button}>
-          <Text style={styles.buttonText}>Connected</Text>
+          <Text style={{marginRight:5}}><FontAwesome6  name="check" size={24} color="black" /></Text>
+          <Text style={styles.buttonText}>Wifi Connected</Text>
+          
         </View>
       )
     }
@@ -76,14 +78,7 @@ const HomeScreen = ({ navigation }) => {
       </TouchableOpacity>)
 
     }}
-    const handleDataUpdate = (data) => {
-      setMessage(data);
-      
-    };
-    const handleStatusUpdate = (status) => {
-      setConnectionStatus(status)
-    };
-
+    
 
   return (
     <SafeAreaView style={styles.container}>
@@ -94,6 +89,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <View>
       <Text style={styles.TopText2}>Welcome to the looc app</Text>
+      
       <View style={styles.connectionContainer}>
           <ConnectionBtn/>
           <View style={styles.connectionBtContainer}>
@@ -119,34 +115,38 @@ const HomeScreen = ({ navigation }) => {
                   <Feather name="lock" size={20} color="white" />
                 </View>
               </View>
+
             </GestureHandlerRootView>
           </View>
          
         </View>
+        <View style={{flex:1 ,justifyContent:'center'}}>
         <Text style={[styles.swipeGuideText,{color: connectionStatus ?'white':'rgba(255, 255,255, 0.9)'}]}>{connectionStatus?'Swipe To Unlock' : 'Please Connect To Continue'}</Text>
+        </View>
       </View>
       <Text style={styles.TopText2}>Actions</Text>
       <View style={styles.ActionsContainer}>
-        <TouchableOpacity style={styles.ActionContainer} onPress={()=>{navigation.navigate('Enrolling')}}>
+        <TouchableOpacity style={connectionStatus?styles.ActionContainer:styles.disabledButton} onPress={()=>{navigation.navigate('Enrolling')}} >
+        {/* disabled={connectionStatus ?false:true} */}
           <Image source={enroll} />
           <View style={styles.enrollContainer}>
-            <Text style={styles.ActionsText}>Enroll</Text>
+            <Text style={connectionStatus?styles.ActionsText:styles.disabledText}>Enroll</Text>
             <Image source={chev2} />
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity  onPress={() => navigation.navigate('Users')} style={styles.ActionContainer}>
+        <TouchableOpacity  onPress={() => navigation.navigate('Users')} style={connectionStatus?styles.ActionContainer:styles.disabledButton} disabled={connectionStatus ?false:true}>
           <Image source={usersIcon} />
           <View style={styles.enrollContainer}>
-            <Text style={styles.ActionsText}>users</Text>
+            <Text style={connectionStatus?styles.ActionsText:styles.disabledText}>users</Text>
             <Image source={chev2} />
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.ActionContainer} onPress={()=>{navigation.navigate('Settings')}}>
+        <TouchableOpacity style={connectionStatus?styles.ActionContainer:styles.disabledButton} onPress={()=>{navigation.navigate('Settings')}} disabled={connectionStatus ?false:true}>
           <Image source={settingsIcon} />
           <View style={styles.enrollContainer}>
-            <Text style={styles.ActionsText}>Settings</Text>
+            <Text style={connectionStatus?styles.ActionsText:styles.disabledText}>Settings</Text>
             <Image source={chev2} />
           </View>
         </TouchableOpacity>
@@ -184,8 +184,8 @@ const styles = StyleSheet.create({
     marginLeft: '5%',
   },
   connectionContainer: {
-    marginTop: height>800?hp(5):hp(2),
-    marginBottom: height>800?hp(5):0,
+    marginTop: height>800?hp(4):hp(2),
+    marginBottom: height>800?hp(7):0,
     borderRadius: 30,
     backgroundColor: 'rgba(255, 255, 255, 0.04)',
     width:height<800?wp(75):wp(85),
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     
     backgroundColor: '#2E3233',
-    padding:2,
+    padding:wp(2),
     borderRadius: 50,
     marginTop: hp(2),
     marginBottom: hp(1),
@@ -218,10 +218,10 @@ const styles = StyleSheet.create({
   swipeGuideText: {
     alignSelf:'center',
     fontSize: wp(5),
+    marginTop:-hp(1.5),
     color: 'white',
     fontFamily: 'SpaceGrotesk_300Light',
-    position:'absolute',
-    bottom:hp(6)
+    
    
   },
   ActionsText: {
@@ -230,11 +230,14 @@ const styles = StyleSheet.create({
     fontFamily: 'SpaceGrotesk_300Light',
   },
   button: {
+    display:'flex',
+    flexDirection:'row',
     marginTop: 20,
     zIndex:2,
     marginLeft: 20,
     paddingVertical: hp(0.7),
-    paddingHorizontal: hp(1.8),
+    paddingHorizontal: hp(1.2),
+    marginBottom:hp(1.5),
     backgroundColor: 'white',
     borderRadius: 50,
     alignSelf: 'flex-start',
@@ -244,7 +247,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     fontFamily: 'SpaceGrotesk_400Regular',
-    letterSpacing:1
+    letterSpacing:1,
   },
   ActionsContainer: {
     flexDirection: 'row',
@@ -252,7 +255,10 @@ const styles = StyleSheet.create({
     marginTop: '2%',
     gap:wp(4),
     alignSelf:'center',
-    justifyContent:'center'
+    justifyContent:'center',
+
+    
+
     
   },
   ActionContainer: {
@@ -264,6 +270,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0.04)',
     borderRadius: 20,
+    
+  },
+  disabledButton: {
+    gap: 10,
+    width:wp(26),
+    height:hp(12),
+    paddingLeft:wp(2),
+    paddingRight:wp(2),
+    justifyContent: 'center',
+    backgroundColor: 'rgba(255, 255, 255, 0.02)',
+    borderRadius: 20,
+  },
+  disabledText:{
+    fontSize: wp(4),
+    color: 'rgba(255, 255, 255, 0.2)',
+    fontFamily: 'SpaceGrotesk_300Light',
+  },
+  disabledText:{
+    fontSize: wp(4),
+    color: 'rgba(255, 255, 255, 0.2)',
+    fontFamily: 'SpaceGrotesk_300Light',
   },
   enrollContainer: {
     gap:wp(2),

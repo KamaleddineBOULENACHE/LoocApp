@@ -14,10 +14,11 @@ const Step2= (props) => {
   const { connectionStatus, message, sendMessage } = useContext(WebSocketContext);
 
   useEffect(() => {
-    if(message==='Fingerprint enrolled successfully'){
+    if(message){
       props.progressFunction()
       
     }
+    
     
       
     
