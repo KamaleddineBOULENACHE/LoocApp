@@ -15,6 +15,7 @@ const SettingsScreen= () => {
       <View style={styles.TopLabel}>
         <Text style={styles.TopText}>Settings</Text>
       </View>
+      
     <View style={styles.SettingsContainer}>
    
       <View style={styles.SettingCategoryContainer}>
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#121418',
-    
+    elevation:1,
     width:'100%'
   },
   logoContainer: {
@@ -64,11 +65,15 @@ const styles = StyleSheet.create({
   },
   TopLabel:{
     width:'100%',
-    height:'10%',
+    height:hp(17),
+
     backgroundColor:'#191B1F',
     position:'absolute',
     top:0,
     paddingLeft:wp(4),
+    display:'flex',
+    justifyContent:'flex-end',
+    marginBottom:hp(5)
     
     
   },
@@ -76,11 +81,13 @@ const styles = StyleSheet.create({
     color:'white',
     fontSize:hp(3.2),
     fontFamily:'SpaceGrotesk_700Bold',
-    marginTop:'2%'
+    marginTop:'2%',
+    marginBottom:'7%',
+
 
   },
   SettingsContainer:{
-    marginTop:hp(15),
+    marginTop:hp(20),
    
   },
   SettingCategoryContainer:{

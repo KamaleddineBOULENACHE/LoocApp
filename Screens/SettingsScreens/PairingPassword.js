@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     display:'flex',
     paddingHorizontal:20,
     alignItems:'center',
-    marginTop:hp(13)
+    marginTop:hp(20)
     
     
 
@@ -212,11 +212,17 @@ const styles = StyleSheet.create({
   },
   TopLabel:{
     width:'100%',
-    height:'15%',
+    height:hp(17),
+
     backgroundColor:'#191B1F',
     position:'absolute',
     top:0,
     paddingLeft:wp(4),
+    display:'flex',
+    justifyContent:'flex-end',
+    marginBottom:hp(5),
+    
+
     
     
   },
@@ -224,7 +230,8 @@ const styles = StyleSheet.create({
     color:'white',
     fontSize:hp(3.2),
     fontFamily:'SpaceGrotesk_700Bold',
-    marginTop:'2%'
+    marginTop:'2%',
+     marginBottom:'7%',
 
   },
 })

@@ -10,9 +10,10 @@ const Step1 = (props) => {
   const EnrollName = () => {
     
     sendMessage(`ENROLL${ownerName}`);
-    if(message && connectionStatus){
-      props.progressFunction();
-    }
+    console.log('finished Step 1')
+    
+    props.progressFunction();
+    
   };
 
   return (

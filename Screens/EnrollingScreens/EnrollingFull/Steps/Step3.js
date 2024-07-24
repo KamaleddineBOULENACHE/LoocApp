@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext,useEffect} from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput } from 'react-native';
 
 import FingerFailure from './assets/FingerFailure.png'
@@ -15,8 +15,16 @@ import { Ionicons } from '@expo/vector-icons';
 
 const Step3= (props) => {
 
-  const { connectionStatus, message, sendMessage } = useContext(WebSocketContext);
+  const { connectionStatus, message, sendMessage,modifyMessage } = useContext(WebSocketContext);
 
+  
+  useEffect(() => {
+     
+    return () => {
+      modifyMessage('')
+
+    };
+  }, [message]);
   const handleRetry = () => {
     props.progressFunction(0);
   };
@@ -92,7 +100,7 @@ const Step3= (props) => {
 
 
 
-if(message==='Fingerprint enrolled successfully'){
+if(props.EStatus === 1){
 
   return (
     <View style={styles.container}>
@@ -102,6 +110,7 @@ if(message==='Fingerprint enrolled successfully'){
   );
 }
 else{
+  if(props.EStatus === 2){
   return (
     <View style={styles.container}>
         <Failure/>
@@ -109,7 +118,7 @@ else{
     </View>
   );
 
-}
+}}
 };
 
 const styles = StyleSheet.create({

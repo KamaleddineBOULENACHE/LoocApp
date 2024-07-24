@@ -29,13 +29,18 @@ const UserScreen = ({ navigation }) => {
   useFocusEffect(
     React.useCallback(() => {
       sendMessage(`LIST`);
+      if(users.length===0 && connectionStatus){
+        setLoading(true)
+      }
+
       console.log('Sent List');
       console.log(message);
 
       return () => {
+        
+        console.log('unmounted');
         setUsers([]);
         modifyMessage('')
-        console.log('unmounted');
       };
     }, [])
   );
@@ -71,9 +76,14 @@ const UserScreen = ({ navigation }) => {
     sendMessage(`DELETE ${id}`);
   };
 
-  useEffect(()=>{
+  // useEffect(()=>{
+  //   // return () => {
+  //   //   setUsers([]);
+  //   //   modifyMessage('')
+  //   //   console.log('unmounted');
+  //   // };
 
-  },[message])
+  // },[message])
   return (
     <View style={styles.container}>
       <View>

@@ -9,8 +9,9 @@ import { WebSocketContext } from '../../../Controllers/WebSocketContextt';
 import {widthPercentageToDP as wp,heightPercentageToDP as hp }from 'react-native-responsive-screen'
 
 const Enrolling = ({navigation}) => {
-    const [currentStep, setCurrentStep] = useState(2);
-    const { connectionStatus, message, sendMessage ,setMessage } = useContext(WebSocketContext);
+    const [currentStep, setCurrentStep] = useState(0);
+    const [EnrollingStatus, setEnrollingStatus] = useState(0);
+    const { connectionStatus, message, sendMessage , modifyMessage } = useContext(WebSocketContext);
  
   
     // LOG  Received message: Fingerprint enrolled successfully
@@ -33,16 +34,24 @@ const Enrolling = ({navigation}) => {
         setCurrentStep(step);
       }
     };
+
+    const Status = (status) => {
+      
+      setEnrollingStatus(status);
+      
+    };
+    
+    
+   
     
 
     const steps = [
       <Step1 key="step1" progressFunction={nextStep} />,
-      <Step2 key="step2" progressFunction={nextStep} />,
-      <Step3 key="step3" progressFunction={Step} />,
+      <Step2 key="step2" progressFunction={nextStep} EstatusFunction={Status} />,
+      <Step3 key="step3" progressFunction={Step} EStatus={EnrollingStatus} />,
     ];
     
  
-
   return (
     <View style={styles.container}>
 

@@ -6,14 +6,14 @@ export const WebSocketContext = createContext();
 const WebSocketProvider = ({children}) => {
   const [connectionStatus, setConnectionStatus] = useState(false);
   const [message, setMessage] = useState('');
-  const [ActivateWebsockets, setActivateWebsockets] = useState('false');
+  const [ActivateWebsockets, setActivateWebsockets] = useState(false);
 
   const ws = useRef(null);
   const reconnectInterval = 1000; // 1 second
   const pingInterval = 5000; // 5 seconds (adjust as needed)
 
   useEffect(() => {
-    if (ActivateWebsockets === 'true') {
+    if (ActivateWebsockets) {
       connectWebSocket();
     }
 
@@ -27,10 +27,10 @@ const WebSocketProvider = ({children}) => {
   useEffect(() => {
     let pingIntervalId = null;
 
-    if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+    if (connectionStatus && ws.current.readyState === WebSocket.OPEN) {
       pingIntervalId = setInterval(() => {
         // Send a ping to the server to keep the connection alive
-        ws.current.send('ping');
+        // ws.current.send('ping');
       }, pingInterval);
     }
 
@@ -58,7 +58,7 @@ const WebSocketProvider = ({children}) => {
     ws.current.onerror = (error) => {
       setConnectionStatus(false);
       console.log('WebSocket error:', error.message);
-      setActivateWebsockets('false');
+      setActivateWebsockets(false);
     };
 
     ws.current.onclose = (event) => {
@@ -66,7 +66,7 @@ const WebSocketProvider = ({children}) => {
       console.log('WebSocket closed', event.reason);
       // Attempt to reconnect after a delay
       setTimeout(connectWebSocket, reconnectInterval);
-      setActivateWebsockets('false');
+      setActivateWebsockets(false);
     };
   };
 
@@ -83,7 +83,7 @@ const WebSocketProvider = ({children}) => {
   };
 
   const modifyWebsockets = (msg) => {
-    setActivateWebsockets(msg);
+    setActivateWebsockets(msg === 'true');
   };
 
   return (

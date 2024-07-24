@@ -24,7 +24,6 @@ import {
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
 import { WebSocketContext } from '../../Controllers/WebSocketContextt';
-import WebSocketConnection from './../../Controllers/WebSocketConnection';
 
 const { width, height } = Dimensions.get('window');
 
@@ -93,8 +92,9 @@ const HomeScreen = ({ navigation }) => {
       <View style={styles.connectionContainer}>
           <ConnectionBtn/>
           <View style={styles.connectionBtContainer}>
-          <Image style={{width:height<800?hp(18):hp(20),height:height<800?hp(18):hp(20)}} source={connectionStatus?FingerConnected:FingerDisConnected} />
-          <View style={[styles.SwipeCon,{backgroundColor: connectionStatus ?'#2E3233':'rgba(10, 10, 10, 0.5)'}]}>
+          <Image style={{width:height<800?hp(18):hp(20),height:height<800?hp(18):hp(20),opacity:connectionStatus?1:0.4}} source={connectionStatus?FingerConnected:FingerDisConnected} />
+          <View style={[styles.SwipeCon,{opacity:connectionStatus?1:0.4}]}>
+          {/* {backgroundColor: connectionStatus ?'#2E3233':'rgba(10, 10, 10, 0.5)'}] */}
          
             <GestureHandlerRootView style={styles.gestureContainer}>
            
@@ -117,7 +117,7 @@ const HomeScreen = ({ navigation }) => {
               </View>
 
             </GestureHandlerRootView>
-          </View>
+           </View>
          
         </View>
         <View style={{flex:1 ,justifyContent:'center'}}>
@@ -126,9 +126,9 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <Text style={styles.TopText2}>Actions</Text>
       <View style={styles.ActionsContainer}>
-        <TouchableOpacity style={connectionStatus?styles.ActionContainer:styles.disabledButton} onPress={()=>{navigation.navigate('Enrolling')}} >
+        <TouchableOpacity style={connectionStatus?styles.ActionContainer:styles.disabledButton} onPress={()=>{navigation.navigate('Enrolling')}}  >
         {/* disabled={connectionStatus ?false:true} */}
-          <Image source={enroll} />
+          <Image source={enroll}  />
           <View style={styles.enrollContainer}>
             <Text style={connectionStatus?styles.ActionsText:styles.disabledText}>Enroll</Text>
             <Image source={chev2} />
@@ -279,17 +279,14 @@ const styles = StyleSheet.create({
     paddingLeft:wp(2),
     paddingRight:wp(2),
     justifyContent: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.02)',
+    backgroundColor: 'rgba(255, 255, 255, 0.04)',
+    opacity:0.2,
     borderRadius: 20,
   },
+ 
   disabledText:{
     fontSize: wp(4),
-    color: 'rgba(255, 255, 255, 0.2)',
-    fontFamily: 'SpaceGrotesk_300Light',
-  },
-  disabledText:{
-    fontSize: wp(4),
-    color: 'rgba(255, 255, 255, 0.2)',
+    color: 'rgba(255, 255, 255, 1)',
     fontFamily: 'SpaceGrotesk_300Light',
   },
   enrollContainer: {
@@ -319,7 +316,7 @@ const styles = StyleSheet.create({
     width:'100%',
     height:'100%',
     position:'absolute',
-    backgroundColor: 'rgba(10, 10, 10, 0)',
+    
     zIndex:1,
     borderRadius: 30,}
 });

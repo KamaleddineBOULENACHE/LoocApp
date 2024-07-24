@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Looc2",
-    "slug": "Looc2",
+    "name": "Looc",
+    "slug": "Looc",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -9,12 +9,9 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor":  "black"
+      "backgroundColor": "#000000"
     },
-    "statusBar": {
-      "backgroundColor": "transparent",
-      "style": "light"
-    },
+   
     "ios": {
       "supportsTablet": true
     },
@@ -23,13 +20,13 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.kamaleddine.loocApp2",
+      "package": "com.kamaleddine.looc",
       "permissions": [
         "INTERNET",
         "ACCESS_WIFI_STATE",
         "ACCESS_NETWORK_STATE"
-      ],
-      "usesCleartextTraffic": true
+      ]
+      
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -46,7 +43,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "2ebb6b29-59cd-4d31-af05-9190e07f8f64"
+        "projectId": "4cbfae9a-98f4-460d-9527-4e5423937f66"
       }
     }
   }

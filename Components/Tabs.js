@@ -106,6 +106,7 @@ const Tabs= ({navigation}) => {
          
         }}/>
         <Tab.Screen name="Settings" component={SettingsTabsNavigator} options={{
+          
           tabBarIcon:({focused})=>(
             <View style={{display:'flex',alignItems:'center'}}>
                   <MaterialIcons name="settings" size={hp(3.5)} color={focused? 'white':'grey'} />
